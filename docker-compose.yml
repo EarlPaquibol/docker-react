@@ -1,0 +1,22 @@
+version: "3"
+services: 
+  react-app: 
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - .:/app
+      - /app/node_modules
+  test-react-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - .:/app
+      - /app/node_modules
+    command: ["npm", "run", "test"] 
+
+
