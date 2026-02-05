@@ -10,9 +10,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      # - name: Get docker credentials
-      #   run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build project
         run: docker build -t earlp/react-dev-test -f Dockerfile.dev .
       - name: Run test
         run: docker run -e CI=true earlp/react-dev-test npm test
+
+      - name: Configure AWS access
+        using: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::063741353758:role/gh-actions-eb-role
+          aws-region: ap-souteast-2
+
+      - name: Install EB CLI
+        run: pip install awsebcli
+
+      - name: EB deploy
+        run: eb deploy Frontend-env
