@@ -16,7 +16,8 @@ function App() {
           rel="noopener noreferrer"
         >
           This is using docker compose from dockerfile.dev!
-          Learn React docker
+          Learn React docker.
+          Trying this optimized build for EB!
         </a>
       </header>
     </div>
