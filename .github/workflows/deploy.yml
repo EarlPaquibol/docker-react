@@ -16,13 +16,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: npm install ci
+        run: npm ci
+      - name: Test project
+        run: npm run test
       - name: Build project
         run: npm run build
-      - name: Build project
-        run: docker build -t earlp/react-dev-test -f Dockerfile.dev .
-      - name: Run test
-        run: docker run -e CI=true earlp/react-dev-test npm test
+      # - name: Build project
+      #   run: docker build -t earlp/react-dev-test -f Dockerfile.dev .
+      # - name: Run test
+      #   run: docker run -e CI=true earlp/react-dev-test npm test
       - name: Configure AWS access
         uses: aws-actions/configure-aws-credentials@v4
         with:
