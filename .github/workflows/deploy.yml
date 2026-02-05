@@ -27,18 +27,18 @@ jobs:
         run: |
           mkdir -p ./frontend
           cp -r build ./frontend/build
-      # - name: Build project
-      #   run: docker build -t earlp/react-dev-test -f Dockerfile.dev .
-      # - name: Run test
-      #   run: docker run -e CI=true earlp/react-dev-test npm test
-      # - name: Configure AWS access
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     role-to-assume: arn:aws:iam::063741353758:role/gh-actions-eb-role
-      #     aws-region: ap-southeast-2
+      - name: Build project
+        run: docker build -t earlp/react-dev-test -f Dockerfile.dev .
+      - name: Run test
+        run: docker run -e CI=true earlp/react-dev-test npm test
+      - name: Configure AWS access
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::063741353758:role/gh-actions-eb-role
+          aws-region: ap-southeast-2
 
-      # - name: Install EB CLI
-      #   run: pip install awsebcli
+      - name: Install EB CLI
+        run: pip install awsebcli
 
-      # - name: EB deploy
-      #   run: eb deploy Frontend-env
+      - name: EB deploy
+        run: eb deploy Frontend-env
