@@ -16,10 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build project
-        run: docker build -t earlp/react-dev-test -f Dockerfile.dev .
+        run: docker build -t earlp/react-dev-test .
       - name: Run test
         run: docker run -e CI=true earlp/react-dev-test npm test
-
       - name: Configure AWS access
         uses: aws-actions/configure-aws-credentials@v4
         with:
