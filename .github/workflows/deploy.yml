@@ -16,7 +16,7 @@ jobs:
         run: docker run -e CI=true earlp/react-dev-test npm test
 
       - name: Configure AWS access
-        using: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::063741353758:role/gh-actions-eb-role
           aws-region: ap-souteast-2
