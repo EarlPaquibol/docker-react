@@ -21,6 +21,8 @@ jobs:
         run: npm run test
       - name: Build project
         run: npm run build
+      - name: Copy build files
+        run: cp -r build ./frontend/build
       # - name: Build project
       #   run: docker build -t earlp/react-dev-test -f Dockerfile.dev .
       # - name: Run test
